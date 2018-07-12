@@ -1,5 +1,6 @@
 package me.gtihtina.parstagram;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,27 +10,39 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
     private EditText usernameInput;
     private EditText passwordInput;
+    private Button signupbtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            final Intent i = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(i);
+        }
 
-        usernameInput = findViewById(R.id.etUsername);
+        setContentView(R.layout.activity_main);
+        usernameInput = findViewById(R.id.etUsername1);
         passwordInput = findViewById(R.id.etPassword);
         loginBtn = findViewById(R.id.btLogin);
+        signupbtn = findViewById(R.id.signupbtn);
+
+
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent i = new Intent(MainActivity.this, SignupActivity.class);
+                startActivity(i);
+            }
+        });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,13 +56,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void login(String username, String password){
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if(e == null){
                     Log.d("LoginActivity", "Login successful.");
-                    final Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                    final Intent i = new Intent(MainActivity.this, FeedActivity.class);
                     startActivity(i);
                     finish();
 

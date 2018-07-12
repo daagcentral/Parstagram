@@ -6,6 +6,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.sql.Time;
+
 @ParseClassName("Post")
 
 public class Post extends ParseObject {
@@ -13,6 +15,8 @@ public class Post extends ParseObject {
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_IMAGE = "image";
     private static final String KEY_USER = "user";
+    private static final String KEY_OBJECTID = "objectId";
+
 
     public String getDescription(){
 
@@ -43,6 +47,17 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
 
     }
+//    public Time getTime(){
+//        return getTime(KEY_USER);
+//
+//    }
+
+
+    @Override
+    public String getObjectId() {
+        return super.getObjectId();
+    }
+
     public static class Query extends ParseQuery<Post>{
 
         public Query() {
@@ -58,4 +73,6 @@ public class Post extends ParseObject {
             return this;
         }
     }
+
+
 }
