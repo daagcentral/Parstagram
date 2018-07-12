@@ -3,7 +3,6 @@ package me.gtihtina.parstagram;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.parse.ParseException;
 
 import java.util.List;
 
@@ -44,11 +44,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         //get tweet data according to position
         Post post = mPost.get(position);
         //populate the view according to the data
-        holder.tvUsername.setText(post.getUser().toString());
+        holder.tvUsername.setText(post.getUser().getUsername());
         holder.tvDescription.setText(post.getDescription().toString());
         //holder.tvTime.setText(post.getRelativeTimeAgo(post.getTime()));
-        Glide.with(context). load(post.getImage()).into(holder.ivPost);
-
+        try {
+            Glide.with(context).load(post.getImage().getFile()).into(holder.ivPost);
+        } catch (ParseException e) {
+            // fuck you
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -68,7 +72,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             super(itemView);
 
             //preform the findViewById
-            ivPost = (ImageView) itemView.findViewById(R.id.ivPost);
+            ivPost = (ImageView) itemView.findViewById(R.id.FrameLayout);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
 
