@@ -12,7 +12,9 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        app:menu="@menu/nav_items"></android.support.design.widget.BottomNavigationView>
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/colorPrimaryDark"
+        app:menu="@menu/nav_items" />
 
     <FrameLayout
         android:id="@+id/main_frame"
@@ -27,7 +29,10 @@
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize">
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,13 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
+                android:scaleType="fitCenter"
                 android:src="@drawable/nav_logo_whiteout" />
-            <ImageView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ufi_new_direct"/>
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>

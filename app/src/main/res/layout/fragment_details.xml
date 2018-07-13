@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DetailsFragment">
 
-    <ImageView
-        android:id="@+id/ivPropic"
-        android:layout_width="57dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/FrameLayout"
-        app:layout_constraintEnd_toStartOf="@+id/tvUsername"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/placeholder_face_big" />
+    <!-- TODO: Update blank fragment layout -->
+
 
     <ImageView
         android:id="@+id/FrameLayout"
@@ -47,8 +35,18 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="385dp" />
 
+    <ImageView
+        android:id="@+id/ivPropicDetails"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/background_dark" />
+
     <TextView
-        android:id="@+id/tvUsername"
+        android:id="@+id/tvUsernameDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -56,7 +54,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPropic"
         app:layout_constraintStart_toEndOf="@+id/ivPropic"
         app:layout_constraintTop_toTopOf="@+id/ivPropic" />
 
@@ -70,9 +68,7 @@
         app:layout_constraintEnd_toStartOf="@+id/commentBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FrameLayout"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ufi_heart"
-        android:backgroundTint="@android:color/white"/>
+        app:srcCompat="@drawable/ufi_heart" />
 
     <ImageButton
         android:id="@+id/commentBtn"
@@ -83,9 +79,7 @@
         app:layout_constraintEnd_toStartOf="@+id/dmBtn"
         app:layout_constraintStart_toEndOf="@+id/likeBtn"
         app:layout_constraintTop_toBottomOf="@+id/FrameLayout"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ufi_comment"
-        android:backgroundTint="@android:color/white"/>
+        app:srcCompat="@drawable/ufi_comment" />
 
     <ImageButton
         android:id="@+id/dmBtn"
@@ -93,11 +87,11 @@
         android:layout_height="40dp"
         android:layout_marginEnd="6dp"
         android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/tvDescription"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toEndOf="@+id/commentBtn"
         app:layout_constraintTop_toBottomOf="@+id/FrameLayout"
-        app:srcCompat="@drawable/ufi_new_direct"
-        android:backgroundTint="@android:color/white"/>
+        app:srcCompat="@drawable/ufi_new_direct" />
 
     <ImageButton
         android:id="@+id/saveBtn"
@@ -108,12 +102,9 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/dmBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/dmBtn"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ufi_save"
-        android:backgroundTint="@android:color/white"/>
+        app:srcCompat="@drawable/ufi_save" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline9"
@@ -130,7 +121,7 @@
         app:layout_constraintGuide_begin="335dp" />
 
     <TextView
-        android:id="@+id/tvDescription"
+        android:id="@+id/tvDescriptionDetails"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginBottom="13dp"
@@ -181,18 +172,16 @@
         app:layout_constraintGuide_begin="396dp" />
 
     <TextView
-        android:id="@+id/tvTime"
+        android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="153dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
-        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tvUsername"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/tvUsername" />
 </android.support.constraint.ConstraintLayout>

@@ -50,7 +50,7 @@ public class SignupActivity extends AppCompatActivity {
                         if (e == null) {
                             // Hooray! Let them use the app now.
                             Log.d("SignupActivity", "Sign up successful.");
-                            final Intent i = new Intent(SignupActivity.this, HomeActivity.class);
+                            final Intent i = new Intent(SignupActivity.this, TabsActivity.class);
                             startActivity(i);
                             finish();
                         } else {

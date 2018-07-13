@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
-public class TabsActivity extends AppCompatActivity {
+public class TabsActivity extends AppCompatActivity implements CameraFragment.Callback {
 
     private BottomNavigationView mainnav;
     private FrameLayout mainframe;
@@ -57,7 +57,6 @@ public class TabsActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.nav_feed:
-                        //mainnav.setItemBackgroundResource(R.drawable.instagram_home_filled_24);
                         setFragment(feedfragment);
                         return true;
 
@@ -84,7 +83,12 @@ public class TabsActivity extends AppCompatActivity {
         FragmentTransaction fragmenttransaction = getSupportFragmentManager().beginTransaction();
         fragmenttransaction.replace(R.id.main_frame, fragment);
         fragmenttransaction.commit();
+    }
 
+    @Override
+    public void onPostCreated() {
+        // When a post has been created, navigate to the feed.
+        mainnav.setSelectedItemId(R.id.nav_feed);
     }
 
     public void onLaunchCamera() {

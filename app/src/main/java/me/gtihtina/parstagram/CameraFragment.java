@@ -1,6 +1,7 @@
 package me.gtihtina.parstagram;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -30,15 +31,31 @@ import me.gtihtina.parstagram.model.Post;
  */
 public class CameraFragment extends Fragment {
 
+    interface Callback {
+        void onPostCreated();
+    }
+
+    private Callback callback;
+
     private EditText descriptionInput;
     private Button picbtn;
     private ImageView postPic;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
-    public CameraFragment() {
-        // Required empty public constructor
+        if (context instanceof Callback) {
+            callback = (Callback) context;
+        }
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        callback = null;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,6 +89,7 @@ public class CameraFragment extends Fragment {
         });
         return view;
     }
+
     private void createPost(String description, ParseFile imageFile, ParseUser user) {
         final Post newPost = new Post();
         newPost.setDescription(description);
@@ -80,9 +98,10 @@ public class CameraFragment extends Fragment {
         newPost.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if(e==null){
+                if (e == null) {
                     Log.d("HomeActivity", "Create item_post success!");
-                } else{
+                    callback.onPostCreated();
+                } else {
                     e.printStackTrace();
                 }
             }

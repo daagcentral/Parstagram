@@ -1,6 +1,8 @@
 package me.gtihtina.parstagram;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Movie;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseException;
@@ -45,7 +48,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Post post = mPost.get(position);
         //populate the view according to the data
         holder.tvUsername.setText(post.getUser().getUsername());
-        holder.tvDescription.setText(post.getDescription().toString());
+        holder.tvTime.setText(post.getRelativeTimeAgo());
+
+        holder.tvDescription.setText(post.getDescription());
         //holder.tvTime.setText(post.getRelativeTimeAgo(post.getTime()));
         try {
             Glide.with(context).load(post.getImage().getFile()).into(holder.ivPost);
@@ -53,6 +58,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             // fuck you
             e.printStackTrace();
         }
+
+
+
+
+        holder.ivPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "SELECTED", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -62,10 +77,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     //create viewHolder class
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivPost;
         public TextView tvUsername;
         public TextView tvDescription;
+        public TextView tvTime;
 
 
         public ViewHolder (View itemView){
@@ -75,14 +91,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivPost = (ImageView) itemView.findViewById(R.id.FrameLayout);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
+            tvTime = (TextView) itemView.findViewById(R.id.tvTime);
 
 
 
         }
 
 
-
     }
+
 
     public void clear() {
         mPost.clear();

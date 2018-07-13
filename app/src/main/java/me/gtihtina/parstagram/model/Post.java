@@ -1,12 +1,17 @@
 package me.gtihtina.parstagram.model;
 
+import android.text.format.DateUtils;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @ParseClassName("Post")
 
@@ -47,10 +52,14 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
 
     }
-//    public Time getTime(){
-//        return getTime(KEY_USER);
-//
-//    }
+
+
+
+    public String getRelativeTimeAgo() {
+
+        return DateUtils.getRelativeTimeSpanString(getCreatedAt().getTime(),
+                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+    }
 
 
     @Override
